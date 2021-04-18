@@ -14,7 +14,7 @@ import java.io.FileNotFoundException;
 
 public class MainDic {
 
-    Scanner scan=new Scanner(System.in);
+    static Scanner scan=new Scanner(System.in);
     public static void main(String[] args) {
 
         //atributos iniciales
@@ -32,41 +32,144 @@ public class MainDic {
         try {
 
             File archivo = new File("diccionario.txt");
-            Scanner contentFileScanner = new Scanner(archivo);
+            Scanner scanArch = new Scanner(archivo);
 
-            while (contentFileScanner.hasNextLine()) {
+            while (scanArch.hasNextLine()) {
 
                
-                String data = contentFileScanner.nextLine();
-                String[] splittedData = data.split(",");
+                String data = scanArch.nextLine();
+                String[] sepcoma = data.split(",");
                 HashMap<String, String> wordsHashMap = new HashMap<String, String>();
 
                 
-                if (splittedData.length == 3) {
+                if (sepcoma.length == 3) {
 
-                    eng.add(splittedData[0]);
-                    esp.add(splittedData[1]);
-                    fra.add(splittedData[2]);
+                    //Se usara esto para convertir las oraciones
+                    eng.add(sepcoma[0]);
+                    esp.add(sepcoma[1]);
+                    fra.add(sepcoma[2]);
 
                     for (int i = 0; i < 3; i++) {
-                        wordsHashMap.put(leng[i], splittedData[i]);
+                        wordsHashMap.put(leng[i], sepcoma[i]);
                     }
                 }
 
                
-                final HashMap<String, String> newMap = info.put(splittedData[0], wordsHashMap);
-                final Association<String, String> association = BT.put(newMap);
+                HashMap<String, String> newMap = info.put(sepcoma[0], wordsHashMap);
+                Association<String, String> association = BT.put(newMap);
                 AS.add(association);
             }
 
+            System.out.println("Palabras almacenadas con exito");
             
-            contentFileScanner.close();
+            scanArch.close();
 
         // Manejo de errores.
         } catch (FileNotFoundException exception) {
 
           
-            System.out.println("Archivo no encontrado...");
+            System.out.println("No hay un archivo con ese nombre");
+        }
+
+        boolean run = true;
+
+        while (run) {
+
+            System.out.print("1. Leer archivo.\n2. Salir.\n\nElige una opción: ");
+            int option = 0;
+
+            try {
+
+                option = scan.nextInt();
+
+            } catch (InputMismatchException exception) {
+
+                option = 0;
+            }
+
+            switch (option) {
+
+                case 1: {
+
+                    System.out.print("\n\nEscoga un Lenguaje:\n1. Inglés.\n2. Español.\n3. Francés.\n-> ");
+                    int language = 0;
+
+                    try {
+
+                        language = scan.nextInt();
+        
+                    } catch (InputMismatchException exception) {
+        
+                        language = 0;
+                    }
+
+                    try {
+
+                        File oracion = new File("oracion.txt");
+                        Scanner ScannerOr = new Scanner(oracion);
+                        ArrayList<String[]> oracionConvertir = new ArrayList<String[]>();
+
+                        while (ScannerOr.hasNextLine()) {
+                            String fila = ScannerOr.nextLine();
+                            String[] splitEsp = fila.split(" ");
+                            oracionConvertir.add(splitEsp);
+                        }
+
+                        switch (language) {
+
+                            case 1: {
+
+                                for (String[] oracionAnali : oracionConvertir) {
+                                    ConvertirO.traducir(oracionAnali, esp, eng, fra);
+                                }
+
+                                break;
+
+                            } case 2: {
+
+                                for (String[] oracionAnali : oracionConvertir) {
+                                    ConvertirO.traducir(oracionAnali, esp, eng, fra);
+                                }
+
+                                break;
+
+                            } case 3: {
+
+                                for (String[] oracionAnali : oracionConvertir) {
+                                    ConvertirO.traducir(oracionAnali, esp, eng, fra);
+                                }
+
+                                break;
+
+                            } default: {
+
+                                System.out.println("No es una opción valida\n");
+                                break;
+                            }
+                        }
+
+                        ScannerOr.close();
+
+                    } catch (FileNotFoundException exception) {
+
+                        // Texto que indica que no se encontró el archivo.
+                        System.out.println("No hay un archivo con ese nombre");
+                    }
+
+                    break;
+
+                } case 2: {
+
+                    run = false;
+                    break;
+
+                } default: {
+
+                    System.out.println("No es una opción valida\n");
+                    run = false;
+                    break;
+                }
+            }
         }
         
     }

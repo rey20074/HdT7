@@ -7,8 +7,7 @@
     José Mariano Reyes 20074
 
 */
-// A class for structuring associations that may be compared.
-// (c) 1998, 2001 duane a. bailey
+
 import java.util.Map;
 
 public class ComparableAssociation<K extends Comparable<K>,V>
