@@ -56,7 +56,7 @@ public class MainDic {
 
                
                 HashMap<String, String> newMap = info.put(sepcoma[0], wordsHashMap);
-                Association<String, String> association = BT.put(newMap);
+                Association<String, String> association = BT.almacenar(newMap);
                 AS.add(association);
             }
 

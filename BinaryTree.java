@@ -257,7 +257,7 @@ public class BinaryTree<E> {
         return "Root";  
     }
 
-    public Association<String, String> put(HashMap<String, String> map) {
+    public Association<String, String> almacenar(HashMap<String, String> map) {
         return new Association<String, String>(null, null);
     }
     
