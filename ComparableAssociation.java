@@ -14,7 +14,7 @@ import java.util.Map;
 public class ComparableAssociation<K extends Comparable<K>,V>
 extends Association<K,V>
 implements Comparable<ComparableAssociation<K,V>>
-, MapEntry<K,V> {
+{
     /**
      * Construct an association that can be ordered, from only a key.
      * The value is set to null.

@@ -33,18 +33,6 @@ public class BinarySearchTree<E extends Comparable<E>> {
      * The ordering used on this search tree.
      */
     protected Comparator<E> ordering;
-
-
-    /**
-     * Constructs a binary search tree with no data
-     *
-     * @post Constructs an empty binary search tree
-     */
-    public BinarySearchTree()
-    {
-        this(new NaturalComparator<E>());
-    }
-
     /**
      * Constructs a binary search tree with no data
      *
@@ -314,10 +302,10 @@ public class BinarySearchTree<E extends Comparable<E>> {
      * 
      * @return An iterator over binary search tree
      */
-    public Iterator<E> iterator()
-    {
-        return root.inorderIterator();
-    }
+    //public Iterator<E> iterator()
+    //{
+      //  return root.inorderIterator();
+    //}
 
     /**
      * Returns the hashCode of the value stored by this object.
