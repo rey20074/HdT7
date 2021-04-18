@@ -8,6 +8,8 @@
 
 */
 
+import java.util.HashMap;
+
 public class BinaryTree<E> {
 
     protected E val; // value associated with node
@@ -253,6 +255,10 @@ public class BinaryTree<E> {
         if (isRightChild()) return "R";
         if (isLeftChild()) return "L";
         return "Root";  
+    }
+
+    public Association<String, String> put(HashMap<String, String> map) {
+        return new Association<String, String>(null, null);
     }
     
     
